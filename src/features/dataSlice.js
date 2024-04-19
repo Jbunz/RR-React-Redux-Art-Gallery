@@ -28,10 +28,14 @@ export const dataSlice = createSlice({
 })
 
 export const { setData, clearData, incrementId, decrementId, inputId } = dataSlice.actions
-
+//thunk action creater
 export const fetchData = () => {
+    //thunk about data
     const fetchDataThunk = async (dispatch, getState) => {
+        //state that matters to be able to know what to do
         let state = getState()
+
+        
         const response = await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${state.data.objectId}`)
         const rData = await response.json()
         dispatch(setData(rData))
